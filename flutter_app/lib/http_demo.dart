@@ -27,12 +27,11 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
   @override
   void initState() {
     super.initState();
-
   }
 
   Future<List<Post>> fetchPosts() async {
     final response =
-    await http.get('https://resources.ninghao.net/demo/posts.json');
+        await http.get('https://resources.ninghao.net/demo/posts.json');
 
     // print('statusCode: ${response.statusCode}');
     // print('body: ${response.body}');
@@ -68,9 +67,7 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
             return ListTile(
               title: Text(item.title),
               subtitle: Text(item.author),
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(item.imageUrl),
-              ),
+              leading: Image.network(item.imageUrl,height: 100.0),
             );
           }).toList(),
         );
@@ -87,12 +84,12 @@ class Post {
   final String imageUrl;
 
   Post(
-      this.id,
-      this.title,
-      this.description,
-      this.author,
-      this.imageUrl,
-      );
+    this.id,
+    this.title,
+    this.description,
+    this.author,
+    this.imageUrl,
+  );
 
   Post.fromJson(Map json)
       : id = json['id'],
@@ -102,7 +99,7 @@ class Post {
         imageUrl = json['imageUrl'];
 
   Map toJson() => {
-    'title': title,
-    'descritpion': description,
-  };
+        'title': title,
+        'descritpion': description,
+      };
 }
