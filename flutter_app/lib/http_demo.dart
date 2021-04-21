@@ -30,15 +30,19 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
   }
 
   Future<List<Post>> fetchPosts() async {
+    // try {
     final response =
-        await http.get('https://resources.ninghao.net/demo/posts.json');
+        await http.get('http://yapi.mohangtimes.co/mock/29/product_list');
+    // } catch (e) {
+    //   print(e);
+    // }
 
-    // print('statusCode: ${response.statusCode}');
-    // print('body: ${response.body}');
+    print('statusCode: ${response.statusCode}');
+    print('body: ${response.body}');
 
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body);
-      List<Post> posts = responseBody['posts']
+      List<Post> posts = responseBody['data']['products']
           .map<Post>((item) => Post.fromJson(item))
           .toList();
 
@@ -66,8 +70,8 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
           children: snapshot.data.map<Widget>((item) {
             return ListTile(
               title: Text(item.title),
-              subtitle: Text(item.author),
-              leading: Image.network(item.imageUrl,height: 100.0),
+              subtitle: Text(item.price),
+              leading: Image.network(item.imageUrl, height: 100.0),
             );
           }).toList(),
         );
@@ -79,27 +83,23 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
 class Post {
   final int id;
   final String title;
-  final String description;
-  final String author;
+  final String price;
   final String imageUrl;
 
   Post(
     this.id,
     this.title,
-    this.description,
-    this.author,
+    this.price,
     this.imageUrl,
   );
 
   Post.fromJson(Map json)
       : id = json['id'],
         title = json['title'],
-        description = json['description'],
-        author = json['author'],
-        imageUrl = json['imageUrl'];
+        price = json['price'],
+        imageUrl = json['image_url'];
 
   Map toJson() => {
         'title': title,
-        'descritpion': description,
       };
 }
