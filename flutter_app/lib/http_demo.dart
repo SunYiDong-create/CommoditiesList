@@ -69,11 +69,19 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
         return ListView(
           children: snapshot.data.map<Widget>((item) {
             return ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => Page(pageTitle: '商品详情',)));
+              },
               title: Text(
                 "商品名：" + item.title.toString(),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
-              subtitle: Text("商品id"+item.id.toString()+"\n"+"价格：" + item.price.toString()),
+              subtitle: Text("商品id" +
+                  item.id.toString() +
+                  "\n" +
+                  "价格：" +
+                  item.price.toString()),
               contentPadding: EdgeInsets.symmetric(vertical: 10.0),
               leading: Image.network(
                 item.imageUrl,
@@ -110,4 +118,20 @@ class Post {
   Map toJson() => {
         'title': title,
       };
+}
+
+class Page extends StatelessWidget {
+  final String pageTitle;
+
+  Page({this.pageTitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(pageTitle),
+        elevation: 0.0,
+      ),
+    );
+  }
 }
