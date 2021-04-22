@@ -3,13 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'file:///C:/Users/mohang/Desktop/Eden/CommoditiesList/flutter_app/lib/model/commodity_details_model.dart';
+import '../model/commodity_details_model.dart';
 
 class DetailsPage extends StatelessWidget {
   List<String> imgs = new List();
+  List<String> description = new List();
   final String pageTitle;
-
   DetailsPage({this.pageTitle});
+  Widget _listItemBuilder(BuildContext context, int index) {
+    return Container(
+      color: Colors.white,
+      margin: EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Image.network(
+            imgs[index],
+          ),
+          SizedBox(
+            height: 15.0,
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +55,22 @@ class DetailsPage extends StatelessWidget {
                           fit: BoxFit.cover,
                         );
                       },
-                      itemCount: 4,
+                      itemCount: imgs.length,
                       pagination: new SwiperPagination(), //如果不填则不显示指示点
                       autoplay: true, //如果不填则不显示左右按钮
                     ),
                   ),
-                  Container(
-                    child: new ListView(),
-
-
+                  Expanded(
+                    child: Container(
+                        child: ListView.builder(
+                      itemCount: imgs.length,
+                      itemBuilder: _listItemBuilder,
+                    )
+                    ),
                   )
                 ],
-              ));
+              )
+          );
         });
   }
 
@@ -70,4 +90,5 @@ class DetailsPage extends StatelessWidget {
       throw Exception('Failed to fetch posts.');
     }
   }
+
 }
