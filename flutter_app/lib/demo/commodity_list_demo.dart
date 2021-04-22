@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/commodity_details.dart';
+import 'file:///C:/Users/mohang/Desktop/Eden/CommoditiesList/flutter_app/lib/demo/commodity_details_demo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -31,13 +31,8 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
   }
 
   Future<List<Post>> fetchPosts() async {
-    // try {
     final response =
         await http.get('http://yapi.mohangtimes.co/mock/29/product_list');
-    // } catch (e) {
-    //   print(e);
-    // }
-
     print('statusCode: ${response.statusCode}');
     print('body: ${response.body}');
 
