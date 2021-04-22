@@ -9,11 +9,13 @@ class DetailsPage extends StatelessWidget {
   List<String> imgs = new List();
   List<String> description = new List();
   final String pageTitle;
+
   DetailsPage({this.pageTitle});
+
   Widget _listItemBuilder(BuildContext context, int index) {
     return Container(
-      color: Colors.white,
-      margin: EdgeInsets.all(8.0),
+      color: Colors.black,
+      margin: EdgeInsets.only(bottom: 8.0),
       child: Column(
         children: <Widget>[
           Image.network(
@@ -39,11 +41,16 @@ class DetailsPage extends StatelessWidget {
               child: Text('loading...'),
             );
           }
-          return Scaffold(
-              appBar: AppBar(
-                title: Text(pageTitle),
-                elevation: 0.0,
-              ),
+          return NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  SliverAppBar(
+                    title: Text('商品详情'),
+                    centerTitle: true,
+                  )
+                ];
+              },
               body: Column(
                 children: <Widget>[
                   Container(
@@ -65,12 +72,10 @@ class DetailsPage extends StatelessWidget {
                         child: ListView.builder(
                       itemCount: imgs.length,
                       itemBuilder: _listItemBuilder,
-                    )
-                    ),
+                    )),
                   )
                 ],
-              )
-          );
+              ));
         });
   }
 
@@ -90,5 +95,4 @@ class DetailsPage extends StatelessWidget {
       throw Exception('Failed to fetch posts.');
     }
   }
-
 }
