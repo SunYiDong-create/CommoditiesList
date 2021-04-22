@@ -1,8 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
 import '../model/commodity_details_model.dart';
 
 class DetailsPage extends StatelessWidget {

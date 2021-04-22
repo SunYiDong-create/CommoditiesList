@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'file:///C:/Users/mohang/Desktop/Eden/CommoditiesList/flutter_app/lib/demo/commodity_details_demo.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'commodity_details_demo.dart';
 
 class HttpDemo extends StatelessWidget {
   @override
@@ -115,4 +114,3 @@ class Post {
         'title': title,
       };
 }
-
