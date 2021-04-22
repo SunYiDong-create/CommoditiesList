@@ -1,8 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/commodity_details.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'dart:convert';
 
 class HttpDemo extends StatelessWidget {
   @override
@@ -59,19 +60,19 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         print('data: ${snapshot.data}');
         print('connectionState: ${snapshot.connectionState}');
-
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: Text('loading...'),
           );
         }
-
         return ListView(
           children: snapshot.data.map<Widget>((item) {
             return ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => Page(pageTitle: '商品详情',)));
+                    builder: (BuildContext context) => DetailsPage(
+                          pageTitle: '商品详情',
+                        )));
               },
               title: Text(
                 "商品名：" + item.title.toString(),
@@ -120,18 +121,3 @@ class Post {
       };
 }
 
-class Page extends StatelessWidget {
-  final String pageTitle;
-
-  Page({this.pageTitle});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(pageTitle),
-        elevation: 0.0,
-      ),
-    );
-  }
-}
