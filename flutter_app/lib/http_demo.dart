@@ -41,8 +41,8 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
     print('body: ${response.body}');
 
     if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body);
-      List<Post> posts = responseBody['data']['products']
+      final responseBody = json.decode(response.body)['data'];
+      List<Post> posts = responseBody['products']
           .map<Post>((item) => Post.fromJson(item))
           .toList();
 
@@ -69,11 +69,18 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
         return ListView(
           children: snapshot.data.map<Widget>((item) {
             return ListTile(
-              title: Text(item.title),
-              subtitle: Text(item.price),
-              leading: Image.network(item.imageUrl, height: 100.0),
+              title: Text("商品名："+item.title.toString(),style:TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0) ),
+              subtitle: Text("价格："+item.price.toString()),
+              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+              leading: Image.network(
+                item.imageUrl,
+                height: 200.0,
+                width: 130.0,
+              ),
+
             );
           }).toList(),
+
         );
       },
     );
