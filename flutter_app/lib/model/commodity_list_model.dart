@@ -1,3 +1,4 @@
+//商品列表model
 class CommodityList {
   final int id;
   final String title;

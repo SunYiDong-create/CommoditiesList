@@ -1,3 +1,4 @@
+//商品详情model
 class CommodityDetailModel {
   int code;
   String message;
