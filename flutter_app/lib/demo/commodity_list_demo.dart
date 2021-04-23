@@ -42,7 +42,6 @@ class _CommodityListHomeState extends State<CommodityListHome> {
       List<CommodityList> commodityLists = responseBody['products']
           .map<CommodityList>((item) => CommodityList.fromJson(item))
           .toList();
-
       return commodityLists;
     } else {
       throw Exception('Failed to fetch posts.');

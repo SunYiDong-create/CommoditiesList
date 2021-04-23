@@ -21,11 +21,9 @@ class DetailsPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.network(
-            imgs[index],
+            description[index],
+            fit: BoxFit.fitWidth,
           ),
-          SizedBox(
-            height: 15.0,
-          )
         ],
       ),
     );
@@ -72,7 +70,7 @@ class DetailsPage extends StatelessWidget {
                   Expanded(
                     child: Container(
                         child: ListView.builder(
-                      itemCount: imgs.length,
+                      itemCount: description.length,
                       itemBuilder: _listItemBuilder,
                     )),
                   )
@@ -81,7 +79,7 @@ class DetailsPage extends StatelessWidget {
         });
   }
 
-  Future<List<String>> fetchCommodityDetails() async {
+  Future<List<Detail>> fetchCommodityDetails() async {
     final response =
         await http.get('http://yapi.mohangtimes.co/mock/29/product_detail');
     print('statusCode: ${response.statusCode}');
@@ -92,7 +90,8 @@ class DetailsPage extends StatelessWidget {
           .map<Detail>((item) => Detail.fromJson(item))
           .toList();
       imgs.addAll(details.first.imageUrls);
-      return imgs;
+      description.addAll(details.first.description);
+      return details;
     } else {
       throw Exception('Failed to fetch posts.');
     }
