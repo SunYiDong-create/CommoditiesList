@@ -18,13 +18,11 @@ class DetailsPage extends StatelessWidget {
     return Container(
       color: Colors.black,
       margin: EdgeInsets.only(bottom: 8.0),
-      child: Column(
-        children: <Widget>[
-          Image.network(
-            description[index],
-            fit: BoxFit.fitWidth,
-          ),
-        ],
+      child: Container(
+        child: Image.network(
+          description[index],
+          fit: BoxFit.fitWidth,
+        ),
       ),
     );
   }
