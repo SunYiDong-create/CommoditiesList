@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
+
 import '../model/commodity_details_model.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -32,7 +34,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: fetchDetailsPosts(),
+        future: fetchCommodityDetails(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           print('data: ${snapshot.data}');
           print('connectionState: ${snapshot.connectionState}');
@@ -63,8 +65,8 @@ class DetailsPage extends StatelessWidget {
                         );
                       },
                       itemCount: imgs.length,
-                      pagination: new SwiperPagination(), //如果不填则不显示指示点
-                      autoplay: true, //如果不填则不显示左右按钮
+                      pagination: new SwiperPagination(),
+                      autoplay: true,
                     ),
                   ),
                   Expanded(
@@ -79,7 +81,7 @@ class DetailsPage extends StatelessWidget {
         });
   }
 
-  Future<List<String>> fetchDetailsPosts() async {
+  Future<List<String>> fetchCommodityDetails() async {
     final response =
         await http.get('http://yapi.mohangtimes.co/mock/29/product_detail');
     print('statusCode: ${response.statusCode}');

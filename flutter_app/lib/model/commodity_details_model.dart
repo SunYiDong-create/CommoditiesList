@@ -1,11 +1,11 @@
-class DetailModel {
+class CommodityDetailModel {
   int code;
   String message;
   Data data;
 
-  DetailModel({this.code, this.message, this.data});
+  CommodityDetailModel({this.code, this.message, this.data});
 
-  DetailModel.fromJson(Map<String, dynamic> json) {
+  CommodityDetailModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
