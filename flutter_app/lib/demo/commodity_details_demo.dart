@@ -39,35 +39,33 @@ class DetailsPage extends StatelessWidget {
               child: Text('loading...'),
             );
           }
-          return Scaffold(
-              appBar: AppBar(
-                title: const Text('商品详情'),
+          return Column(
+            children: <Widget>[
+              Container(
+                height: 250,
+                child: new Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return new Image.network(
+                      imgs[index],
+                      fit: BoxFit.cover,
+                    );
+                  },
+                  itemCount: imgs.length,
+                  pagination: new SwiperPagination(),
+                  autoplay: true,
+                ),
               ),
-              body: Column(
-                children: <Widget>[
-                  Container(
-                    height: 250,
-                    child: new Swiper(
-                      itemBuilder: (BuildContext context, int index) {
-                        return new Image.network(
-                          imgs[index],
-                          fit: BoxFit.cover,
-                        );
-                      },
-                      itemCount: imgs.length,
-                      pagination: new SwiperPagination(),
-                      autoplay: true,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                        child: ListView.builder(
-                      itemCount: description.length,
-                      itemBuilder: _listItemBuilder,
-                    )),
-                  )
-                ],
-              ));
+              Container(
+                height: 1300,
+                child: ListView.builder(
+                  shrinkWrap: true, //解决无限高度问题
+                  physics: new NeverScrollableScrollPhysics(), //禁用滑动事件
+                  itemCount: description.length,
+                  itemBuilder: _listItemBuilder,
+                ),
+              )
+            ],
+          );
         });
   }
 

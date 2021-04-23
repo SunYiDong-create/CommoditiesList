@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/model/commodity_list_model.dart';
 import 'package:http/http.dart' as http;
 
-import 'commodity_details_demo.dart';
+import 'commodity_details_normal_demo.dart';
 
 class CommodityListDemo extends StatelessWidget {
   @override
@@ -80,7 +80,7 @@ class _CommodityListHomeState extends State<CommodityListHome> {
               return ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => DetailsPage(
+                      builder: (BuildContext context) => DtailsNormalList(
                             pageTitle: '商品详情',
                           )));
                 },
