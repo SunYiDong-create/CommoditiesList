@@ -57,6 +57,12 @@ class DetailsPage extends StatelessWidget {
                 ),
               ),
               Container(
+                child: Text(
+                  "商品描述：",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
                 height: 1250,
                 child: ListView.builder(
                   shrinkWrap: true, //解决无限高度问题
