@@ -74,7 +74,7 @@ class _CommodityListHomeState extends State<CommodityListHome> {
                 "商品名：" + item.title.toString(),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
-              subtitle: Text("商品id" +
+              subtitle: Text("商品id:" +
                   item.id.toString() +
                   "\n" +
                   "价格：" +
