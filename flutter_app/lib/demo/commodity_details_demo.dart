@@ -59,7 +59,7 @@ class DetailsPage extends StatelessWidget {
               Container(
                 child: Text(
                   "商品描述：",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -90,7 +90,7 @@ class DetailsPage extends StatelessWidget {
       description.addAll(details.first.description);
       return details;
     } else {
-      throw Exception('Failed to fetch posts.');
+      throw Exception('Failed to fetch data.');
     }
   }
 }
