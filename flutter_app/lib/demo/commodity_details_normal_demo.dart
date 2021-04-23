@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'commodity_details_demo.dart';
 
 //详情页面整体模块
-class DtailsNormalList extends StatelessWidget {
+class DetailsNormalList extends StatelessWidget {
   final String pageTitle;
 
-  DtailsNormalList({this.pageTitle});
+  DetailsNormalList({this.pageTitle});
 
   @override
   Widget build(BuildContext context) {

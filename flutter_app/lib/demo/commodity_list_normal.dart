@@ -44,7 +44,7 @@ class _CommodityListHomeState extends State<CommodityListHome> {
               return ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => DtailsNormalList(
+                      builder: (BuildContext context) => DetailsNormalList(
                             pageTitle: '商品详情',
                           )));
                 },
