@@ -39,16 +39,10 @@ class DetailsPage extends StatelessWidget {
               child: Text('loading...'),
             );
           }
-          return NestedScrollView(
-              headerSliverBuilder:
-                  (BuildContext context, bool innerBoxIsScrolled) {
-                return <Widget>[
-                  SliverAppBar(
-                    title: Text('商品详情'),
-                    centerTitle: true,
-                  )
-                ];
-              },
+          return Scaffold(
+              appBar: AppBar(
+                title: const Text('商品详情'),
+              ),
               body: Column(
                 children: <Widget>[
                   Container(
