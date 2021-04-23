@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import 'commodity_details_demo.dart';
 
-class HttpDemo extends StatelessWidget {
+class CommodityListDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,23 +15,23 @@ class HttpDemo extends StatelessWidget {
         title: Text('商品列表'),
         elevation: 0.0,
       ),
-      body: HttpDemoHome(),
+      body: CommodityListHome(),
     );
   }
 }
 
-class HttpDemoHome extends StatefulWidget {
+class CommodityListHome extends StatefulWidget {
   @override
-  _HttpDemoHomeState createState() => _HttpDemoHomeState();
+  _CommodityListHomeState createState() => _CommodityListHomeState();
 }
 
-class _HttpDemoHomeState extends State<HttpDemoHome> {
+class _CommodityListHomeState extends State<CommodityListHome> {
   @override
   void initState() {
     super.initState();
   }
 
-  Future<List<Post>> fetchPosts() async {
+  Future<List<CommodityList>> fetchCommodityLists() async {
     final response =
         await http.get('http://yapi.mohangtimes.co/mock/29/product_list');
     print('statusCode: ${response.statusCode}');
@@ -37,11 +39,11 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
 
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body)['data'];
-      List<Post> posts = responseBody['products']
-          .map<Post>((item) => Post.fromJson(item))
+      List<CommodityList> commodityLists = responseBody['products']
+          .map<CommodityList>((item) => CommodityList.fromJson(item))
           .toList();
 
-      return posts;
+      return commodityLists;
     } else {
       throw Exception('Failed to fetch posts.');
     }
@@ -50,7 +52,7 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: fetchPosts(),
+      future: fetchCommodityLists(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         print('data: ${snapshot.data}');
         print('connectionState: ${snapshot.connectionState}');
@@ -91,20 +93,20 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
   }
 }
 
-class Post {
+class CommodityList {
   final int id;
   final String title;
   final String price;
   final String imageUrl;
 
-  Post(
+  CommodityList(
     this.id,
     this.title,
     this.price,
     this.imageUrl,
   );
 
-  Post.fromJson(Map json)
+  CommodityList.fromJson(Map json)
       : id = json['id'],
         title = json['title'],
         price = json['price'],

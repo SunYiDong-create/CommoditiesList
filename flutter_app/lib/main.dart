@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'demo/commodity_list_demo.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(CommodityInfo());
 }
 
-class MyApp extends StatelessWidget {
+class CommodityInfo extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: HttpDemo(),
+      home: CommodityListDemo(),
     );
   }
 }
