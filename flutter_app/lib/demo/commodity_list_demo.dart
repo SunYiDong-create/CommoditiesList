@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/commodity_list_model.dart';
 import 'package:http/http.dart' as http;
 
 import 'commodity_details_demo.dart';
@@ -105,28 +106,4 @@ class _CommodityListHomeState extends State<CommodityListHome> {
       ),
     );
   }
-}
-
-class CommodityList {
-  final int id;
-  final String title;
-  final String price;
-  final String imageUrl;
-
-  CommodityList(
-    this.id,
-    this.title,
-    this.price,
-    this.imageUrl,
-  );
-
-  CommodityList.fromJson(Map json)
-      : id = json['id'],
-        title = json['title'],
-        price = json['price'],
-        imageUrl = json['image_url'];
-
-  Map toJson() => {
-        'title': title,
-      };
 }
