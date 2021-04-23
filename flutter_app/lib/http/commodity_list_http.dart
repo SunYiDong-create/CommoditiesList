@@ -19,6 +19,6 @@ Future<List<CommodityList>> fetchCommodityLists() async {
         .toList();
     return commodityLists;
   } else {
-    throw Exception('Failed to fetch posts.');
+    throw Exception('Failed to fetch data.');
   }
 }

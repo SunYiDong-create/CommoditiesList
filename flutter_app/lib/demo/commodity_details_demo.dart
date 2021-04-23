@@ -72,8 +72,8 @@ class _DetailsPageState extends State<DetailsPage> {
               Container(
                 height: 1250,
                 child: ListView.builder(
-                  shrinkWrap: true, //解决无限高度问题
-                  physics: new NeverScrollableScrollPhysics(), //禁用滑动事件
+                  shrinkWrap: true,
+                  physics: new NeverScrollableScrollPhysics(),
                   itemCount: description.length,
                   itemBuilder: _listItemBuilder,
                 ),
