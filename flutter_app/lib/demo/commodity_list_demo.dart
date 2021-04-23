@@ -50,44 +50,59 @@ class _CommodityListHomeState extends State<CommodityListHome> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: fetchCommodityLists(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        print('data: ${snapshot.data}');
-        print('connectionState: ${snapshot.connectionState}');
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: Text('loading...'),
-          );
-        }
-        return ListView(
-          children: snapshot.data.map<Widget>((item) {
-            return ListTile(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => DetailsPage(
-                          pageTitle: '商品详情',
-                        )));
-              },
-              title: Text(
-                "商品名：" + item.title.toString(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-              ),
-              subtitle: Text("商品id:" +
-                  item.id.toString() +
-                  "\n" +
-                  "价格：" +
-                  item.price.toString()),
-              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-              leading: Image.network(
-                item.imageUrl,
-                height: 200.0,
-                width: 130.0,
-              ),
+    /**
+     * 下拉刷新方法,为list重新赋值
+     */
+    Future<Null> _onRefresh() async {
+      await Future.delayed(Duration(seconds: 3), () {
+        print('refresh');
+        setState(() {
+          fetchCommodityLists();
+        });
+      });
+    }
+
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      child: FutureBuilder(
+        future: fetchCommodityLists(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          print('data: ${snapshot.data}');
+          print('connectionState: ${snapshot.connectionState}');
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Text('loading...'),
             );
-          }).toList(),
-        );
-      },
+          }
+          return ListView(
+            children: snapshot.data.map<Widget>((item) {
+              return ListTile(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => DetailsPage(
+                            pageTitle: '商品详情',
+                          )));
+                },
+                title: Text(
+                  "商品名：" + item.title.toString(),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                ),
+                subtitle: Text("商品id:" +
+                    item.id.toString() +
+                    "\n" +
+                    "价格：" +
+                    item.price.toString()),
+                contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                leading: Image.network(
+                  item.imageUrl,
+                  height: 200.0,
+                  width: 130.0,
+                ),
+              );
+            }).toList(),
+          );
+        },
+      ),
     );
   }
 }
