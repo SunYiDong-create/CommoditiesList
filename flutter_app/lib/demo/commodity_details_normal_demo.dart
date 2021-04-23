@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'commodity_details_demo.dart';
 
+//详情页面整体模块
 class DtailsNormalList extends StatelessWidget {
   final String pageTitle;
 

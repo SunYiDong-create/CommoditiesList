@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../model/commodity_details_model.dart';
 
+//详情页面banner和列表模块
 class DetailsPage extends StatelessWidget {
   List<String> imgs = new List();
   List<String> description = new List();
