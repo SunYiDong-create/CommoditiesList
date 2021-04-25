@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'commodity_list_normal.dart';
+import 'commodity_list_page.dart';
 
 //商品列表页面主页面
 class CommodityListDemo extends StatelessWidget {

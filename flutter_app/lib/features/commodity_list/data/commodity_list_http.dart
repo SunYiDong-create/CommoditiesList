@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../model/commodity_list_model.dart';
+import 'commodity_list_model.dart';
 
 //请求商品列表数据
 Future<List<CommodityList>> fetchCommodityLists() async {

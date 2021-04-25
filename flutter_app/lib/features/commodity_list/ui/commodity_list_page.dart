@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/http/commodity_list_http.dart';
 
-import 'commodity_details_normal_demo.dart';
+import 'file:///C:/Users/mohang/Desktop/Eden/CommoditiesList/flutter_app/lib/features/commodity_list/data/commodity_list_http.dart';
+
+import '../../commodity_details/ui/commodity_details_page.dart';
 
 //商品列表页面列表控件
 class CommodityListHome extends StatefulWidget {
