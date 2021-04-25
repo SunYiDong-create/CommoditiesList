@@ -84,9 +84,9 @@ class _HomePageState extends State<HomePage> {
                           height: 250,
                           child: Swiper(
                               itemCount: imgs.length,
+                              loop: true,
                               autoplay: true,
                               key: UniqueKey(),
-                              loop: true,
                               itemBuilder: (BuildContext context, int index) {
                                 return Image.network(
                                   imgs[index],
@@ -97,21 +97,26 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           child: Center(
-                              child: Column(children: [
-                            Text("${title}",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red[500])),
-                            Text("${price}",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w700)),
-                            Text(
-                              "商品描述:",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.w700),
-                            )
-                          ])),
+                            child: Column(
+                              children: [
+                                Text("${title}",
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.red[500])),
+                                Text("${price}",
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w700)),
+                                Text(
+                                  "商品描述:",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         Container(
                           height: 1250,
@@ -121,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                             itemCount: description.length,
                             itemBuilder: _listItemBuilder,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
