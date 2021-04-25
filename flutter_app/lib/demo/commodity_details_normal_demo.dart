@@ -56,7 +56,11 @@ class _HomePageState extends State<HomePage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           print('data: ${snapshot.data}');
           print('connectionState: ${snapshot.connectionState}');
-
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Text('loading...'),
+            );
+          }
           return Scaffold(
             body: Stack(
               children: <Widget>[
@@ -86,6 +90,15 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                             pagination: SwiperPagination(),
+                          ),
+                        ),
+                        Container(
+                          child: Center(
+                            child: Text(
+                              "商品描述:",
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.w700),
+                            ),
                           ),
                         ),
                         Container(
