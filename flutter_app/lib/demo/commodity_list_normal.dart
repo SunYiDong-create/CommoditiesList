@@ -14,6 +14,7 @@ class _CommodityListHomeState extends State<CommodityListHome> {
   @override
   void initState() {
     super.initState();
+    fetchCommodityLists();
   }
 
   @override
