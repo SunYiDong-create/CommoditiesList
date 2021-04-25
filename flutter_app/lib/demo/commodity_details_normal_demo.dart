@@ -63,9 +63,7 @@ class _HomePageState extends State<HomePage> {
         future: fetchCommodityDetails(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting && _isFirst) {
-            return Center(
-              child: Text('loading...'),
-            );
+            return Center(child: Text('loading...'));
           }
           return Scaffold(
             body: Stack(
@@ -85,42 +83,35 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           height: 250,
                           child: Swiper(
-                            itemCount: imgs.length,
-                            autoplay: true,
-                            key: UniqueKey(),
-                            loop: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Image.network(
-                                imgs[index],
-                                fit: BoxFit.fill,
-                              );
-                            },
-                            pagination: SwiperPagination(),
-                          ),
+                              itemCount: imgs.length,
+                              autoplay: true,
+                              key: UniqueKey(),
+                              loop: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Image.network(
+                                  imgs[index],
+                                  fit: BoxFit.fill,
+                                );
+                              },
+                              pagination: SwiperPagination()),
                         ),
                         Container(
                           child: Center(
-                              child: Column(
-                            children: [
-                              Text(
-                                "${title}",
+                              child: Column(children: [
+                            Text("${title}",
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.red[500]),
-                              ),
-                              Text(
-                                "${price}",
+                                    color: Colors.red[500])),
+                            Text("${price}",
                                 style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w700),
-                              ),
-                              Text(
-                                "商品描述:",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w700),
-                              ),
-                            ],
-                          )),
+                                    fontSize: 22, fontWeight: FontWeight.w700)),
+                            Text(
+                              "商品描述:",
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.w700),
+                            )
+                          ])),
                         ),
                         Container(
                           height: 1250,
@@ -148,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           );
