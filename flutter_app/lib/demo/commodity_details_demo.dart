@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 
 import '../model/commodity_details_model.dart';
 
+const APPBAR_SCROLL_OFFSET = 100;
+
 //详情页面banner和列表模块
 class DetailsPage extends StatefulWidget {
   final String pageTitle;
@@ -21,6 +23,21 @@ class _DetailsPageState extends State<DetailsPage> {
   List<String> imgs = new List();
 
   List<String> description = new List();
+  double appBarAlpha = 0;
+
+  _onScroll(offset) {
+    double alpha = offset / APPBAR_SCROLL_OFFSET;
+    if (alpha < 0) {
+      alpha = 0;
+    } else if (alpha > 1) {
+      alpha = 1;
+    }
+    setState(() {
+      appBarAlpha = alpha;
+    });
+
+    print(offset);
+  }
 
   Widget _listItemBuilder(BuildContext context, int index) {
     return Container(
@@ -47,39 +64,68 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Text('loading...'),
             );
           }
-          return Column(
+          return Scaffold(
+              body: Stack(
             children: <Widget>[
-              Container(
-                height: 250,
-                child: new Swiper(
-                  itemBuilder: (BuildContext context, int index) {
-                    return new Image.network(
-                      imgs[index],
-                      fit: BoxFit.cover,
-                    );
+              MediaQuery.removePadding(
+                removeTop: true,
+                context: context,
+                child: NotificationListener(
+                  onNotification: (scrollNotification) {
+                    if (scrollNotification is ScrollUpdateNotification &&
+                        scrollNotification.depth == 0)
+                      _onScroll(scrollNotification.metrics.pixels);
                   },
-                  itemCount: imgs.length,
-                  pagination: new SwiperPagination(),
-                  autoplay: true,
+                  child: ListView(
+                    children: <Widget>[
+                      Container(
+                        height: 250,
+                        child: Swiper(
+                          itemBuilder: (BuildContext context, int index) {
+                            return new Image.network(
+                              imgs[index],
+                              fit: BoxFit.cover,
+                            );
+                          },
+                          itemCount: imgs.length,
+                          pagination: new SwiperPagination(),
+                          autoplay: true,
+                        ),
+                      ),
+                      Container(
+                        child: Text(
+                          "商品描述：",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Container(
+                        height: 1250,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: new NeverScrollableScrollPhysics(),
+                          itemCount: description.length,
+                          itemBuilder: _listItemBuilder,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                child: Text(
-                  "商品描述：",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                height: 1250,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: new NeverScrollableScrollPhysics(),
-                  itemCount: description.length,
-                  itemBuilder: _listItemBuilder,
-                ),
-              )
+              Opacity(
+                  opacity: appBarAlpha,
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(color: Colors.red),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Text("商品详情"),
+                      ),
+                    ),
+                  ))
             ],
-          );
+          ));
         });
   }
 
