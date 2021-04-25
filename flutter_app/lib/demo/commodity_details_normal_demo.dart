@@ -11,6 +11,8 @@ bool _isFirst;
 const APPBAR_SCROLL_OFFSET = 100;
 List<String> imgs = new List();
 List<String> description = new List();
+String price;
+String title;
 
 class HomePage extends StatefulWidget {
   final String pageTitle;
@@ -98,12 +100,27 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           child: Center(
-                            child: Text(
-                              "商品描述:",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.w700),
-                            ),
-                          ),
+                              child: Column(
+                            children: [
+                              Text(
+                                "${title}",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red[500]),
+                              ),
+                              Text(
+                                "${price}",
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.w700),
+                              ),
+                              Text(
+                                "商品描述:",
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.w700),
+                              ),
+                            ],
+                          )),
                         ),
                         Container(
                           height: 1250,
@@ -152,6 +169,9 @@ class _HomePageState extends State<HomePage> {
       description.clear();
       imgs.addAll(details.first.imageUrls);
       description.addAll(details.first.description);
+      price = details.first.price;
+      title = details.first.title;
+
       _isFirst = false;
       return details;
     } else {
