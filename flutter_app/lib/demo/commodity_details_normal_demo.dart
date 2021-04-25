@@ -156,24 +156,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<List<Detail>> fetchCommodityDetails() async {
-    final response =
-        await http.get('http://yapi.mohangtimes.co/mock/29/product_detail');
-    print('statusCode: ${response.statusCode}');
-    print('body: ${response.body}');
-    if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body)['data'];
-      List<Detail> details = responseBody['detail']
-          .map<Detail>((item) => Detail.fromJson(item))
-          .toList();
-      imgs.clear();
-      description.clear();
-      imgs.addAll(details.first.imageUrls);
-      description.addAll(details.first.description);
-      price = details.first.price;
-      title = details.first.title;
-
-      _isFirst = false;
-      return details;
+    if (_isFirst) {
+      final response =
+          await http.get('http://yapi.mohangtimes.co/mock/29/product_detail');
+      print('statusCode: ${response.statusCode}');
+      print('body: ${response.body}');
+      if (response.statusCode == 200) {
+        final responseBody = json.decode(response.body)['data'];
+        List<Detail> details = responseBody['detail']
+            .map<Detail>((item) => Detail.fromJson(item))
+            .toList();
+        imgs.clear();
+        description.clear();
+        imgs.addAll(details.first.imageUrls);
+        description.addAll(details.first.description);
+        price = details.first.price;
+        title = details.first.title;
+        _isFirst = false;
+        return details;
+      }
     } else {
       throw Exception('Failed to fetch data.');
     }
