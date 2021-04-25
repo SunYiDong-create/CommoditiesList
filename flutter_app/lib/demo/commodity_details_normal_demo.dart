@@ -7,6 +7,7 @@ import 'package:flutter_app/model/commodity_details_model.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
 
+bool _isFirst;
 const APPBAR_SCROLL_OFFSET = 100;
 List<String> imgs = new List();
 List<String> description = new List();
@@ -36,6 +37,11 @@ class _HomePageState extends State<HomePage> {
     print(appBarAlpha);
   }
 
+  @override
+  void initState() {
+    _isFirst = true;
+  }
+
   Widget _listItemBuilder(BuildContext context, int index) {
     return Container(
       color: Colors.black,
@@ -54,9 +60,7 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
         future: fetchCommodityDetails(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          print('data: ${snapshot.data}');
-          print('connectionState: ${snapshot.connectionState}');
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting && _isFirst) {
             return Center(
               child: Text('loading...'),
             );
@@ -148,6 +152,7 @@ class _HomePageState extends State<HomePage> {
       description.clear();
       imgs.addAll(details.first.imageUrls);
       description.addAll(details.first.description);
+      _isFirst = false;
       return details;
     } else {
       throw Exception('Failed to fetch data.');
