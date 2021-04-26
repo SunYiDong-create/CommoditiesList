@@ -26,7 +26,6 @@ class CommodityDetailModel {
 
 class Data {
   List<Detail> detail;
-
   Data({this.detail});
 
   Data.fromJson(Map<String, dynamic> json) {
