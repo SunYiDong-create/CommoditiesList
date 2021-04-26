@@ -8,6 +8,7 @@ class CommodityDetailModel {
 
   CommodityDetailModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
+
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
