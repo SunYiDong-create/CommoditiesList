@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'features/commodity_list/ui/commodity_list_demo.dart';
+import 'package:flutter_app/features/commodity_list/ui/commodity_list_demo.dart';
 
 void main() {
   runApp(CommodityInfo());

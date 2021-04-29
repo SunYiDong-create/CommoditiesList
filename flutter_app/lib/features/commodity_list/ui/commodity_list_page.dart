@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///C:/Users/mohang/Desktop/Eden/CommoditiesList/flutter_app/lib/features/commodity_list/data/commodity_list_http.dart';
-
-import '../../commodity_details/ui/commodity_details_page.dart';
+import 'package:flutter_app/features/commodity_details/ui/commodity_details_page.dart';
+import 'package:flutter_app/features/commodity_list/data/commodity_list_http.dart';
 
 //商品列表页面列表控件
 class CommodityListHome extends StatefulWidget {
@@ -46,12 +44,10 @@ class _CommodityListHomeState extends State<CommodityListHome> {
               return ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          HomePage(pageTitle: '商品详情')));
+                      builder: (BuildContext context) => HomePage(pageTitle: '商品详情')));
                 },
                 title: Text("商品名:${item.title}",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
                 subtitle: Text("商品id:${item.id}\n价格:${item.price}"),
                 contentPadding: EdgeInsets.symmetric(vertical: 10.0),
                 leading: Image.network(
