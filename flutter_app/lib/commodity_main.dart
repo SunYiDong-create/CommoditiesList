@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/commodity_list/ui/commodity_list_demo.dart';
+
+import 'common/TapRipple/TapWidget2.dart';
 
 void main() {
   runApp(CommodityInfo());
@@ -12,7 +13,15 @@ class CommodityInfo extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: CommodityListDemo(),
+      home:
+          // TapWidget1());
+          new Center(
+              child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TapWidget2(),
+        ],
+      )),
     );
   }
 }
