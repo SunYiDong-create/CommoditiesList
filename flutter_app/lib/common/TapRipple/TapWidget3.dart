@@ -23,7 +23,7 @@ class RippleWidget extends StatelessWidget {
   }
 }
 
-class RippleWidget2 extends StatelessWidget {
+class RippleWidget3 extends StatelessWidget {
   final Function onTap;
 
   ///点击事件
@@ -36,7 +36,7 @@ class RippleWidget2 extends StatelessWidget {
   Widget child;
   Color color;
 
-  RippleWidget2({
+  RippleWidget3({
     this.title,
     this.onTap,
     this.decoration,
@@ -63,22 +63,22 @@ class RippleWidget2 extends StatelessWidget {
   }
 }
 
-class TapWidget2 extends StatelessWidget {
+class TapWidget3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Center(
       child: Material(
         child: Container(
-          child: new RippleWidget2(
+          child: new RippleWidget3(
             child: Container(
-                //内部控件
-                width: 250,
-                height: 250,
-                child: Center(child: Text("嵌套中的控件"))
-                // Image.network(
-                //     "https://b-ssl.duitang.com/uploads/item/201402/14/20140214195256_Akuud.thumb.700_0.jpeg")),
-                ),
+              //内部控件
+              width: 250,
+              height: 250,
+              child: Center(
+                  child: Image.network(
+                      "https://b-ssl.duitang.com/uploads/item/201402/14/20140214195256_Akuud.thumb.700_0.jpeg")),
+            ),
             title: "  tap2:封装可修改水波颜色、宽高、水波半径的点击按钮  ",
             //本身点击效果控件属性设置
             onTap: () {},

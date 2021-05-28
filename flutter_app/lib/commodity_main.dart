@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'common/TapRipple/TapWidget2.dart';
+import 'package:flutter_app/pages/index_page.dart';
 
 void main() {
   runApp(CommodityInfo());
@@ -9,19 +8,13 @@ void main() {
 class CommodityInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red,
+    return Container(
+      child: MaterialApp(
+        title: '百姓生活+',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.pink),
+        home: IndexPage(),
       ),
-      home:
-          // TapWidget1());
-          new Center(
-              child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TapWidget2(),
-        ],
-      )),
     );
   }
 }

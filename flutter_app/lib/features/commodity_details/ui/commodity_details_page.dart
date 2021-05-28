@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
         child: Image.network(
           description[index],
           fit: BoxFit.fitWidth,
+          //git test
         ),
       ),
     );
@@ -105,14 +106,10 @@ class _HomePageState extends State<HomePage> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.red[500])),
                                 Text("${price}",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.w700)),
+                                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
                                 Text(
                                   "商品描述:",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w700),
+                                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                                 ),
                               ],
                             ),
@@ -153,15 +150,13 @@ class _HomePageState extends State<HomePage> {
 
   Future<List<Detail>> fetchCommodityDetails() async {
     if (_isFirst) {
-      final response =
-          await http.get('http://yapi.mohangtimes.co/mock/29/product_detail');
+      final response = await http.get('http://yapi.mohangtimes.co/mock/29/product_detail');
       print('statusCode: ${response.statusCode}');
       print('body: ${response.body}');
       if (response.statusCode == 200) {
         final responseBody = json.decode(response.body)['data'];
-        List<Detail> details = responseBody['detail']
-            .map<Detail>((item) => Detail.fromJson(item))
-            .toList();
+        List<Detail> details =
+            responseBody['detail'].map<Detail>((item) => Detail.fromJson(item)).toList();
         imgs.clear();
         description.clear();
         imgs.addAll(details.first.imageUrls);
